@@ -13,7 +13,17 @@ A full-stack **Blog Posting Application** built with **React**, **Node.js**, **E
 
 ## 📸 Preview
 
-> *(Include a screenshot or short GIF here once available)*
+## 📸 App Screenshots
+
+### 🏠 Home Page
+![Home Page](Screenshot%202025-06-19%20114821.png)
+
+### ✍️ Create Post
+![Create Post](Screenshot%202025-06-19%20114837.png)
+
+### 📄 Post View
+![Post View](Screenshot%202025-06-19%20114849.png)
+
 
 ---
 
