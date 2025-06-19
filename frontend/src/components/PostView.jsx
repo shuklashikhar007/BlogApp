@@ -9,14 +9,14 @@ function PostView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/posts/${id}`)
+    axios.get(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
       .then(res => setPost(res.data))
       .catch(err => console.error(err));
   }, [id]);
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`http://localhost:5000/api/posts/${id}`)
+      axios.delete(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
         .then(() => {
           alert("Post deleted successfully!");
           navigate('/');

@@ -11,7 +11,7 @@ function PostForm() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:5000/api/posts/${id}`)
+      axios.get(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
         .then(res => setForm(res.data))
         .catch(err => console.error(err));
     }
@@ -25,8 +25,8 @@ function PostForm() {
     e.preventDefault();
     setLoading(true);
     const apiCall = id
-      ? axios.put(`http://localhost:5000/api/posts/${id}`, form)
-      : axios.post(`http://localhost:5000/api/posts`, form);
+      ? axios.put(`https://blogapp-o0ek.onrender.com/api/posts${id}`, form)
+      : axios.post(`https://blogapp-o0ek.onrender.com/api/posts`, form);
 
     apiCall
       .then(() => {
@@ -43,7 +43,7 @@ function PostForm() {
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`http://localhost:5000/api/posts/${id}`)
+      axios.delete(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
         .then(() => {
           alert("Post deleted.");
           navigate('/');
