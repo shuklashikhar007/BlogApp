@@ -7,7 +7,6 @@ const postSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('Post', postSchema);
 
-/* ==== routes/posts.js ==== */
 const express = require('express');
 const Post = require('../models/Post');
 const router = express.Router();
