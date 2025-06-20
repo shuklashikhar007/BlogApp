@@ -10,27 +10,39 @@ function PostForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem('authUser'));
+    if (!auth || auth.username !== 'Admin' || auth.password !== 'admin123') {
+      navigate('/login');
+    }
+
     if (id) {
-      axios.get(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
+      axios.get(`http://localhost:5000/api/posts/${id}`)
         .then(res => setForm(res.data))
         .catch(err => console.error(err));
     }
-  }, [id]);
+  }, [id, navigate]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const auth = JSON.parse(localStorage.getItem('authUser'));
+    const headers = {
+      username: auth.username,
+      password: auth.password,
+    };
+
     const apiCall = id
-      ? axios.put(`https://blogapp-o0ek.onrender.com/api/posts${id}`, form)
-      : axios.post(`https://blogapp-o0ek.onrender.com/api/posts`, form);
+      ? axios.put(`http://localhost:5000/api/posts/${id}`, form, { headers })
+      : axios.post(`http://localhost:5000/api/posts`, form, { headers });
 
     apiCall
       .then(() => {
-        alert(id ? "Post updated successfully!" : "Post created!");
+        alert(id ? "Post updated!" : "Post created!");
         setLoading(false);
         navigate('/');
       })
@@ -42,13 +54,22 @@ function PostForm() {
   };
 
   const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
+    const auth = JSON.parse(localStorage.getItem('authUser'));
+    const headers = {
+      username: auth.username,
+      password: auth.password,
+    };
+
+    if (window.confirm("Are you sure?")) {
+      axios.delete(`http://localhost:5000/api/posts/${id}`, { headers })
         .then(() => {
           alert("Post deleted.");
           navigate('/');
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          alert("Failed to delete.");
+          console.error(err);
+        });
     }
   };
 
@@ -64,13 +85,13 @@ function PostForm() {
       />
       <textarea
         name="content"
-        maxLength={500}
+        maxLength={3000}
         value={form.content}
         onChange={handleChange}
         placeholder="Write your content..."
         required
       />
-      <p>{form.content.length} / 500 characters</p>
+      <p>{form.content.length} / 3000 characters</p>
       <button type="submit" disabled={loading}>
         {loading ? "Saving..." : id ? "Update" : "Create"} Post
       </button>
@@ -84,4 +105,5 @@ function PostForm() {
 }
 
 export default PostForm;
+
 

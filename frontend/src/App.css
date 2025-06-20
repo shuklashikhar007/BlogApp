@@ -1,71 +1,64 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
+  background: #f4f4f4;
+  color: #222;
   transition: background 0.3s, color 0.3s;
 }
 
-a {
-  text-decoration: none;
-  color: #333;
-}
-
-a:hover {
-  color: #0077cc;
-}
-
-h1 {
-  text-align: center;
-  color: #222;
+.dark-mode {
+  background: #121212;
+  color: #ddd;
 }
 
 .navbar {
-  background-color: #0077cc;
-  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
   align-items: center;
+  background: #0077cc;
+  color: white;
+  padding: 10px 20px;
 }
 
 .navbar a {
+  margin-left: 15px;
+  text-decoration: none;
   color: white;
-  margin-left: 20px;
   font-weight: bold;
 }
 
-.toggle-btn {
-  background: none;
+.navbar button {
+  margin-left: 15px;
+  padding: 6px 12px;
   border: none;
+  background: #ffffff33;
   color: white;
-  margin-left: 20px;
   cursor: pointer;
-  font-size: 1rem;
+  border-radius: 5px;
 }
 
-.navbar a:hover {
-  text-decoration: underline;
+.navbar button:hover {
+  background: #ffffff55;
 }
 
-.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
+.toggle-btn {
+  margin: 10px 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.dark-mode .navbar {
-  background-color: #1f1f1f;
+.toggle-btn:hover {
+  background: #555;
 }
 
-.dark-mode a {
-  color: #9ecbff;
+a {
+  color: inherit;
 }
 
-.dark-mode .post-list,
-.dark-mode .post-view,
-.dark-mode .post-form {
-  background: #1f1f1f;
-  color: #eee;
-}
 
 

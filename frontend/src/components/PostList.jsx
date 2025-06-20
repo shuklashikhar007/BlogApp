@@ -7,15 +7,20 @@ function PostList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('https://blogapp-o0ek.onrender.com/api/posts')
+    axios.get('http://localhost:5000/api/posts')
       .then(res => setPosts(res.data))
       .catch(err => console.error(err));
   }, []);
 
+  const isAdmin = () => {
+    const auth = JSON.parse(localStorage.getItem('authUser'));
+    return auth?.username === 'Admin' && auth?.password === 'admin123';
+  };
+
   return (
     <div className="post-list">
       <h1 id='mainheading'>All Blog Posts</h1>
-      <Link to="/admin" className="create-btn">+ Create New Post</Link>
+      {isAdmin() && <Link to="/admin" className="create-btn">+ Create New Post</Link>}
       {posts.length === 0 ? (
         <p>No posts available. Click "Create Post" to get started.</p>
       ) : (
@@ -33,4 +38,5 @@ function PostList() {
 }
 
 export default PostList;
+
 
