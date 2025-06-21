@@ -7,7 +7,7 @@ function PostList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/posts')
+    axios.get('https://blogapp-1-0.onrender.com/api/posts')
       .then(res => setPosts(res.data))
       .catch(err => console.error(err));
   }, []);
