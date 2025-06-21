@@ -10,39 +10,24 @@ function PostForm() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem('authUser'));
-    if (!auth || auth.username !== 'Admin' || auth.password !== 'admin123') {
-      navigate('/login');
-    }
-
     if (id) {
-      axios.get(`https://blogapp-1-0.onrender.com/api/posts/${id}`)
+      axios.get(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
         .then(res => setForm(res.data))
         .catch(err => console.error(err));
     }
-  }, [id, navigate]);
+  }, [id]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setLoading(true);
-
-    const auth = JSON.parse(localStorage.getItem('authUser'));
-    const headers = {
-      username: auth.username,
-      password: auth.password,
-    };
-
-    const apiCall = id
-      ? axios.put(`https://blogapp-1-0.onrender.com/api/posts/${id}`, form, { headers })
-      : axios.post(`https://blogapp-1-0.onrender.com/api/posts`, form, { headers });
-
+    const apiCall = id ? axios.put(`https://blogapp-o0ek.onrender.com/api/posts${id}`, form) : axios.post(`https://blogapp-o0ek.onrender.com/api/posts`, form);
     apiCall
       .then(() => {
-        alert(id ? "Post updated!" : "Post created!");
+        alert(id ? "Post updated successfully!" : "Post created!");
         setLoading(false);
         navigate('/');
       })
@@ -54,22 +39,13 @@ function PostForm() {
   };
 
   const handleDelete = () => {
-    const auth = JSON.parse(localStorage.getItem('authUser'));
-    const headers = {
-      username: auth.username,
-      password: auth.password,
-    };
-
-    if (window.confirm("Are you sure?")) {
-      axios.delete(`https://blogapp-1-0.onrender.com/api/posts/${id}`, { headers })
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      axios.delete(`https://blogapp-o0ek.onrender.com/api/posts/${id}`)
         .then(() => {
           alert("Post deleted.");
           navigate('/');
         })
-        .catch(err => {
-          alert("Failed to delete.");
-          console.error(err);
-        });
+        .catch(err => console.error(err));
     }
   };
 
