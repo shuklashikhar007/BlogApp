@@ -9,7 +9,7 @@ function PostView() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/posts/${id}`)
+    axios.get(`https://blogapp-1-0.onrender.com/api/posts/${id}`)
       .then(res => setPost(res.data))
       .catch(() => {
         alert("Post not found");
@@ -25,7 +25,7 @@ function PostView() {
     };
 
     if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`http://localhost:5000/api/posts/${id}`, { headers })
+      axios.delete(`https://blogapp-1-0.onrender.com/api/posts/${id}`, { headers })
         .then(() => {
           alert("Post deleted");
           navigate('/');
