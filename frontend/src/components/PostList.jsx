@@ -5,24 +5,20 @@ import './PostList.css';
 
 function PostList() {
   const [posts, setPosts] = useState([]);
-
+// starting point of frontend sends request to backend to get all the posts and stores them in a array using useState hook 
+// no dependency so it will return only once.
   useEffect(() => {
-    axios.get('https://blogapp-1-0.onrender.com/api/posts')
+    axios.get('https://blogapp-o0ek.onrender.com/api/posts')
       .then(res => setPosts(res.data))
       .catch(err => console.error(err));
-  }, []);
-
-  const isAdmin = () => {
-    const auth = JSON.parse(localStorage.getItem('authUser'));
-    return auth?.username === 'Admin' && auth?.password === 'admin123';
-  };
+  }, []); // ek simple useEffect hook that fetches the list of posts from the backend API. since there is no dependency it renders only once.
 
   return (
     <div className="post-list">
       <h1 id='mainheading'>All Blog Posts</h1>
-      {isAdmin() && <Link to="/admin" className="create-btn">+ Create New Post</Link>}
+      <Link to="/admin" className="create-btn">+ Create New Post</Link>
       {posts.length === 0 ? (
-        <p>No posts available. Click "Create Post" to get started.</p>
+        <p>No posts available. Click "Create Post" to get started.</p> // ek deafult message agar koi post create nahi ki hai to.
       ) : (
         <div className="grid">
           {posts.map(post => (
@@ -38,5 +34,6 @@ function PostList() {
 }
 
 export default PostList;
+
 
 
