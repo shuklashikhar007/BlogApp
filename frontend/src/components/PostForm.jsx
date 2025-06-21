@@ -16,7 +16,7 @@ function PostForm() {
     }
 
     if (id) {
-      axios.get(`http://localhost:5000/api/posts/${id}`)
+      axios.get(`https://blogapp-1-0.onrender.com/api/posts/${id}`)
         .then(res => setForm(res.data))
         .catch(err => console.error(err));
     }
@@ -37,8 +37,8 @@ function PostForm() {
     };
 
     const apiCall = id
-      ? axios.put(`http://localhost:5000/api/posts/${id}`, form, { headers })
-      : axios.post(`http://localhost:5000/api/posts`, form, { headers });
+      ? axios.put(`https://blogapp-1-0.onrender.com/api/posts/${id}`, form, { headers })
+      : axios.post(`https://blogapp-1-0.onrender.com/api/posts`, form, { headers });
 
     apiCall
       .then(() => {
@@ -61,7 +61,7 @@ function PostForm() {
     };
 
     if (window.confirm("Are you sure?")) {
-      axios.delete(`http://localhost:5000/api/posts/${id}`, { headers })
+      axios.delete(`https://blogapp-1-0.onrender.com/api/posts/${id}`, { headers })
         .then(() => {
           alert("Post deleted.");
           navigate('/');
