@@ -6,7 +6,7 @@ A full-stack **Blog Posting Application** built with **React**, **Node.js**, **E
 
 ## 🚀 Live Links
 
-- **Frontend (React)**: [View Site](https://your-vercel-url.vercel.app)
+- **Frontend (React)**: [View Site](https://blog-app-xi-beryl.vercel.app/)
 - **Backend (Render)**: [API Server](https://blogapp-o0ek.onrender.com)
 
 ---
